@@ -24,7 +24,7 @@
 // limitations under the License.
 //
 // =================================================================================================
-
+#define _USE_MATH_DEFINES
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -174,7 +174,7 @@ int main(int argc, char* argv[]) {
   // Sets the constraints for local memory size limitations
   auto LocalMemorySize = [] (std::vector<size_t> v) {
     if (v[0] != 0) { return ((v[3]*v[4] + 2*HFS) * (v[1]*v[2] + 2*HFS + v[5]))*sizeof(float); }
-    else           { return 0UL; }
+    else           { return (size_t)0; }
   };
   tuner.SetLocalMemoryUsage(id, LocalMemorySize, {"LOCAL", "TBX", "WPTX", "TBY", "WPTY", "PADDING"});
 

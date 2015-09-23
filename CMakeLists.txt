@@ -106,7 +106,7 @@ set(TUNER
     src/searchers/pso.cc)
 
 # Creates and links the library
-add_library(cltune SHARED ${TUNER})
+add_library(cltune STATIC ${TUNER})
 target_link_libraries(cltune ${OPENCL_LIBRARIES})
 
 # Installs the library
