@@ -68,8 +68,9 @@ endif()
 
 # C++ compiler settings
 if(MSVC)
-  add_definitions(-D_CRT_SECURE_NO_WARNINGS /Os /fp:fast /arch:AVX)
+  add_definitions(-D_CRT_SECURE_NO_WARNINGS /Os /fp:fast /arch:AVX /EHsc)
 else()
+add_definitions(-O3)
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
@@ -149,7 +150,7 @@ endif()
 if (TESTS)
 
   # The tests use specific flags to reduce the amount of warnings from GTest.
-  set(CMAKE_CXX_FLAGS "-O3 -std=c++11")
+  #set(CMAKE_CXX_FLAGS "-O3 -std=c++11")
 
   # Enables Google Test tests (source-code is shipped with the project)
   add_subdirectory(external/gtest-1.7.0)
