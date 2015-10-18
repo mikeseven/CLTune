@@ -363,7 +363,7 @@ void Tuner::PrintJSON(const std::string &filename,
     auto num_configs = result.configuration.size();
     for (auto p=size_t{0}; p<num_configs; ++p) {
       auto config = result.configuration[p];
-      fprintf(file, "\"%s\": %lu", config.name.c_str(), config.value);
+      fprintf(file, "\"%s\": %zu", config.name.c_str(), config.value);
       if (p < num_configs-1) { fprintf(file, ","); }
     }
     fprintf(file, "}\n");
@@ -405,9 +405,9 @@ void Tuner::PrintToFile(const std::string &filename) const {
       // Prints an entry to file
       fprintf(file, "%s;", tuning_result.kernel_name.c_str());
       fprintf(file, "%.2lf;", tuning_result.time);
-      fprintf(file, "%lu;", tuning_result.threads);
+      fprintf(file, "%zu;", tuning_result.threads);
       for (auto &setting: tuning_result.configuration) {
-        fprintf(file, "%lu;", setting.value);
+        fprintf(file, "%zu;", setting.value);
       }
       fprintf(file, "\n");
     }

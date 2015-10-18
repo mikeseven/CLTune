@@ -349,7 +349,15 @@ class Queue {
       queue_(new cl_command_queue, [](cl_command_queue* s) { CheckError(clReleaseCommandQueue(*s));
                                                              delete s; }) {
     auto status = CL_SUCCESS;
+#ifdef CL_VERSION_2_0
+    cl_queue_properties props[] = {
+      CL_QUEUE_PROPERTIES, CL_QUEUE_PROFILING_ENABLE,
+      0
+    };
+    *queue_ = clCreateCommandQueueWithProperties(context(), device(), props, &status);
+#else
     *queue_ = clCreateCommandQueue(context(), device(), CL_QUEUE_PROFILING_ENABLE, &status);
+#endif
     CheckError(status);
   }
 

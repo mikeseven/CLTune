@@ -96,7 +96,7 @@ TunerImpl::TunerImpl(size_t platform_id, size_t device_id):
     search_args_(0),
     argument_counter_(0) {
   if (!suppress_output_) {
-    fprintf(stdout, "\n%s Initializing OpenCL on platform %lu device %lu\n",
+    fprintf(stdout, "\n%s Initializing OpenCL on platform %zu device %zu\n",
             kMessageFull.c_str(), platform_id, device_id);
     auto opencl_version = device_.Version();
     auto device_name = device_.Name();
@@ -303,7 +303,7 @@ TunerImpl::TunerResult TunerImpl::RunKernel(const std::string &source, const Ker
     }
 
     // Prints diagnostic information
-    fprintf(stdout, "%s Completed %s (%.0lf ms) - %lu out of %lu\n",
+    fprintf(stdout, "%s Completed %s (%.0lf ms) - %zu out of %zu\n",
             kMessageOK.c_str(), kernel.name().c_str(), elapsed_time,
             configuration_id+1, num_configurations);
 
@@ -538,7 +538,7 @@ void TunerImpl::ModelPrediction(const Model model_type, const float validation_f
       if (tuning_result.time == std::numeric_limits<double>::max()) {
         tuning_result.time = 0.0;
         PrintResult(stdout, tuning_result, kMessageFailure);
-        tuning_result.time = std::numeric_limits<double>::max();
+        tuning_result.time = std::numeric_limits<float>::max();
       }
       else if (!tuning_result.status) {
         PrintResult(stdout, tuning_result, kMessageWarning);

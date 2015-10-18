@@ -130,7 +130,7 @@ void MLModel<T>::GradientDescent(const std::vector<std::vector<T>> &x, const std
     // Computes the cost (to monitor convergence)
     auto cost = Cost(m, n, lambda, x, y);
     if ((iter+1) % (iterations/kGradientDescentCostReportAmount) == 0) {
-      printf("%s Gradient descent %lu/%lu: cost %.2e\n",
+      printf("%s Gradient descent %zu/%zu: cost %.2e\n",
              TunerImpl::kMessageInfo.c_str(), iter+1, iterations, cost);
     }
     
