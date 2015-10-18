@@ -68,7 +68,7 @@ endif()
 
 # C++ compiler settings
 if(MSVC)
-  add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+  add_definitions(-D_CRT_SECURE_NO_WARNINGS /Os /fp:fast /arch:AVX)
 else()
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
